@@ -58,12 +58,23 @@ services:
       - influxData:/var/lib/influxdb
     networks: 
       - edge      
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes: 
+      - grafanaData:/var/lib/grafana
+    networks:
+      - edge      
 
 
 # volumes 
 volumes:
   node-red-data:
   influxData:
+  grafanaData:
 # Create internal link network for Containers
 networks:
   edge:      
