@@ -1,10 +1,45 @@
-node-red:
-    image: nodered/node-red:latest
+version: '3'
+
+services:
+
+  # Eclipse Mosquitto MQTT Broker
+  mosquitto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - MOSQUITTO_VERSION=${MOSQUITTO_VERSION:-latest}
+    environment:
+      - MOSQUITTO_USERNAME=${MOSQUITTO_USERNAME}
+      - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD}
+    image: eclipse-mosquitto:${MOSQUITTO_VERSION:-latest}
+    container_name: mosquitto
+    restart: always
+    ports:
+      - 1883:1883
+    volumes:
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+    networks:
+      - edge
+      
+  nodered: 
+    image: nodered/node-red
+    container_name: nodered
+    restart: unless-stopped
     environment:
       - TZ=America/Sao_Paulo
-    ports:
-      - "1880:1880"
-    networks:
-      - node-red-net
+    ports: 
+      - 1880:1880
     volumes:
       - node-red-data:/data
+    networks:
+      - edge
+      
+# volumes 
+volumes:
+  node-red-data:
+# Create internal link network for Containers
+networks:
+  edge:      
+

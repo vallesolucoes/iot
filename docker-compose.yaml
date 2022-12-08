@@ -24,6 +24,7 @@ services:
       - edge
       
   nodered: 
+    build: ./nodered
     image: nodered/node-red
     container_name: nodered
     restart: unless-stopped
