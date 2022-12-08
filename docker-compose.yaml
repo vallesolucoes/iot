@@ -13,10 +13,27 @@ services:
       - MOSQUITTO_USERNAME=${MOSQUITTO_USERNAME}
       - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD}
     image: eclipse-mosquitto:${MOSQUITTO_VERSION:-latest}
-    container_name: eclipse-mosquitto
+    container_name: mosquitto
     restart: always
+    ports:
+      - 1883:1883
     volumes:
       - ./data:/mosquitto/data
       - ./log:/mosquitto/log
-    ports:
-      - 1883:1883
+    networks:
+      - edge
+      
+  nodered: 
+    image: nodered/node-red
+    container_name: nodered
+    restart: unless-stopped
+    ports: 
+      - "1880:1880"
+    volumes:
+      - noderedData:/data
+    networks:
+      - edge
+      
+#Create internal link network for Containers
+networks:
+  edge:      
