@@ -23,9 +23,10 @@ services:
     networks:
       - edge
       
-  nodered: 
-    context: ./nodered
-    dockerfile: Dockerfile
+  nodered:
+    build: 
+      context: ./nodered
+      dockerfile: Dockerfile
     image: nodered/node-red
     container_name: nodered
     restart: unless-stopped
