@@ -28,7 +28,7 @@ services:
     container_name: nodered
     restart: unless-stopped
     ports: 
-      - "1880:1880"
+      - 1880:1880
     volumes:
       - ./noderedData:/data
     networks:
