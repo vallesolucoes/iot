@@ -35,7 +35,7 @@ services:
     ports: 
       - 1880:1880
     volumes:
-      - node_red_data:/data
+      - ./nodered_data:/data
     networks:
       - edge
       
