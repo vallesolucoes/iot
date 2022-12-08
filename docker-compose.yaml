@@ -27,13 +27,19 @@ services:
     image: nodered/node-red
     container_name: nodered
     restart: unless-stopped
+    environment:
+      - TZ=America/Sao_Paulo
     ports: 
       - 1880:1880
     volumes:
-      - ./data:/nodered/data
+      - node-red-data:/data
     networks:
       - edge
       
-#Create internal link network for Containers
+# volumes 
+volumes:
+  node-red-data:
+# Create internal link network for Containers
 networks:
   edge:      
+
