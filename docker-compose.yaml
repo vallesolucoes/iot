@@ -27,7 +27,7 @@ services:
     build: 
       context: ./nodered
       dockerfile: Dockerfile
-    image: nodered/node-red
+    #image: nodered/node-red
     container_name: nodered
     restart: unless-stopped
     environment:
