@@ -38,11 +38,32 @@ services:
       - node-red-data:/data
     networks:
       - edge
-      
+
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: unless-stopped
+    environment:
+      INFLUXDB_DB: devices
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: admin
+      INFLUXDB_USER: admin
+      INFLUXDB_USER_PASSWORD: admin
+    ports:
+      - "8082:8082"
+      - "8086:8086"
+      - "8089:8089"
+    volumes:
+      - influxData:/var/lib/influxdb
+    networks: 
+      - edge      
+
+
 # volumes 
 volumes:
   node-red-data:
-
+  influxData:
 # Create internal link network for Containers
 networks:
   edge:      

@@ -1,0 +1,22 @@
+ node-red:
+        hostname: flows
+        image: "nodered/node-red-docker:0.20.5-slim-v10" # https://hub.docker.com/r/nodered/node-red-docker/tags
+        restart: always
+        user: ${UID} # this needs to be set so that node-red can match filesystem UIDs
+        environment:
+            - ADMIN_AUTH
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - /dev/rtc:/dev/rtc:ro
+            - ${HOME}/.config/node-red:/data
+        networks:
+            - web
+        #ports:
+        #   - "1880:1880"
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=node-red"
+            - "traefik.docker.network=web"
+            - traefik.frontend.redirect.entryPoint=https
+            - "traefik.frontend.rule=Host:flows.${DOMAIN_NAME}" # these will be read from .env
+            - "traefik.port=1880"
