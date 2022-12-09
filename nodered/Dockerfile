@@ -6,3 +6,5 @@ COPY settings.txt /node-red/texto.txt
 # cd /var/lib/docker/volumes/iot3_node-red-data/_data
 
 RUN npm install node-red-contrib-whatsapp-link
+RUN npm install node-red-contrib-telegrambot
+RUN npm install node-red-node-mysql
