@@ -44,10 +44,7 @@ services:
     links:
       - influxdb
     volumes:
-      # Mount for telegraf config
-      - ./telegraf/mytelegraf.conf:/etc/telegraf/telegraf.conf
-    env_file:
-      - ./influxv2.env
+      - telegraf/mytelegraf.conf:/etc/telegraf/telegraf.conf
     environment: 
       - DOCKER_INFLUXDB_INIT_ORG=myorg
       - DOCKER_INFLUXDB_INIT_BUCKET=mybucket
