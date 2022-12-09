@@ -35,7 +35,7 @@ services:
     ports: 
       - 1880:1880
     volumes:
-      - nodered:/data
+      - noderedData:/data
     networks:
       - edge
 
@@ -74,9 +74,9 @@ services:
       - edge      
 
 
-# volumes 
+#Create Volumes for persistent Storage
 volumes:
-  nodered:
+  noderedData:
   influxData:
   grafanaData:
 # Create internal link network for Containers
