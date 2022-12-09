@@ -39,28 +39,16 @@ services:
     networks:
       - edge
 
-  # MySQL container
-  mysql:
-    image: mysql:8.0.19
-    networks:
-      - edge
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-
-  # phpMyAdmin container
-  phpmyadmin:
-
-    image: phpmyadmin/phpmyadmin:5.0.2
-    networks:
-      - edge
-    ports:
-      - "8080:80"
-    environment:
-      PMA_HOST: mysql
+  telegraf:
+    image: telegraf:1.18-alpine
+    volumes:
+    - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
-      - mysql
+      - influxdb
+    links:
+      - influxdb
+    ports:
+    - '127.0.0.1:8125:8125/udp'
 
   grafana:
     image: grafana/grafana:latest
