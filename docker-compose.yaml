@@ -38,22 +38,7 @@ services:
       - noderedData:/data
     networks:
       - edge
-
-  telegraf:
-    image: telegraf
-    links:
-      - influxdb
-    volumes:
-      - telegraf/mytelegraf.conf:/etc/telegraf/telegraf.conf
-    environment: 
-      - DOCKER_INFLUXDB_INIT_ORG=myorg
-      - DOCKER_INFLUXDB_INIT_BUCKET=mybucket
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mytoken
-    depends_on:
-      - influxdb_cli
-    networks:
-      - edge           
-
+  
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
