@@ -76,7 +76,7 @@ services:
 
 # volumes 
 volumes:
-  node-red-data:
+  nodered:
   influxData:
   grafanaData:
 # Create internal link network for Containers

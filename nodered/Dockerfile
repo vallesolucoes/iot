@@ -2,8 +2,8 @@ FROM nodered/node-red:latest
 
 #COPY nodered/settings.js /node-red-data/settings.js
 
-RUN docker volume create nodered
-RUN cp /iot/nodered/settings.txt /var/lib/docker/volumes/nodered/_data
+#RUN docker volume create nodered
+#RUN cp /iot/nodered/settings.txt /var/lib/docker/volumes/nodered/_data
 #RUN cp ./config/a.txt /a.txt
 
 #COPY settings,txt /mosquitto/config/settings.txt
