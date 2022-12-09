@@ -3,7 +3,7 @@ FROM nodered/node-red:latest
 #COPY nodered/settings.js /node-red-data/settings.js
 
 #RUN docker volume create nodered
-RUN cp /iot/nodered/settings.txt /var/lib/docker/volumes/iot_nodered/_data/settings.txt
+RUN cp /iot/nodered/settings.txt /var/lib/docker/volumes/iot_nodered/_data
 #RUN cp ./config/a.txt /a.txt
 
 #COPY ./settings.txt /var/lib/docker/volumes/iot_nodered/_data/settings.txt
