@@ -6,7 +6,7 @@ FROM nodered/node-red:latest
 #RUN cp /iot/nodered/settings.txt /var/lib/docker/volumes/iot_nodered/_data/settings.txt
 #RUN cp ./config/a.txt /a.txt
 
-COPY ./nodered/settings.txt /var/lib/docker/volumes/iot_nodered/_data/settings.txt
+COPY ./settings.txt /var/lib/docker/volumes/iot_nodered/_data/settings.txt
 # cd /var/lib/docker/volumes/iot3_node-red-data/_data
 
 #RUN npm install node-red-contrib-whatsapp-link
