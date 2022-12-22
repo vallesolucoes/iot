@@ -4,6 +4,8 @@ RUN npm install node-red-contrib-telegrambot    # instala o nó do telegrambot
 
 RUN npm install node-red-node-mysql             # instala o nó do mysql
 
+RUN npm install node-red-contrib-aedes          # instala o broker aedes
+
 #COPY nodered/settings.js /node-red-data/settings.js
 #RUN cp /iot/nodered/settings.txt /var/lib/docker/volumes/iot_nodered/_data/e.txt
 #RUN cp /iot/nodered/settings.txt /iot
