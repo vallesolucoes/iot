@@ -69,8 +69,6 @@ services:
       - influxData:/var/lib/influxdb
     networks: 
       - edge       
-
-  services:
   db:
     image: mysql:5.7
     container_name: db
