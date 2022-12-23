@@ -71,7 +71,7 @@ services:
       - edge       
   db:
     image: mysql:5.7
-    container_name: mysql
+    container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: sol@solucoes
       MYSQL_DATABASE: app_db
@@ -82,8 +82,8 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     networks: 
-      - edge         
-  
+      - edge
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: pma
@@ -95,9 +95,7 @@ services:
       PMA_ARBITRARY: 1
     restart: always
     ports:
-      - 8001:80
-    #volumes:
-      #dbdata:
+      - 8081:80
     networks: 
       - edge         
 
@@ -114,13 +112,12 @@ services:
     ports:
       - 9000:9000
 
-#Create Volumes for persistent Storage
 volumes:
   noderedData:
   influxData:
   grafanaData:
   dbdata:
-# Create internal link network for Containers
+
 networks:
   edge:      
 
