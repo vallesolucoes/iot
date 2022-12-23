@@ -69,9 +69,9 @@ services:
       - influxData:/var/lib/influxdb
     networks: 
       - edge       
-  db:
+  mysql:
     image: mysql:5.7
-    container_name: db
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: sol@solucoes
       MYSQL_DATABASE: app_db
@@ -84,7 +84,7 @@ services:
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: pma
+    container_name: phpmyadmin
     links:
       - db
     environment:
