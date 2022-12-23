@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest
+FROM nodered/node-red:2.0.5
 
 RUN npm install node-red-contrib-telegrambot    # instala o nó do telegrambot
 
