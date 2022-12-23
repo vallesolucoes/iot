@@ -29,7 +29,7 @@ services:
       dockerfile: Dockerfile
     #image: nodered/node-red
     container_name: nodered
-    restart: unless-stopped
+    restart: always
     environment:
       - TZ=America/Sao_Paulo
     ports: 
@@ -42,7 +42,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    restart: unless-stopped
+    restart: always
     ports:
       - "3000:3000"
     volumes: 
@@ -53,7 +53,7 @@ services:
   influxdb:
     image: influxdb:2.4.0
     container_name: influxdb
-    restart: unless-stopped
+    restart: always
     environment:
       INFLUXDB_DB: DBONE
       INFLUXDB_HTTP_AUTH_ENABLED: "true"
@@ -102,7 +102,7 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
-    restart: unless-stopped
+    restart: always
     security_opt:
       - no-new-privileges:true
     volumes:
