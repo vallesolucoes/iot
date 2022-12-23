@@ -69,7 +69,7 @@ services:
       - influxData:/var/lib/influxdb
     networks: 
       - edge       
-  mysql:
+  db:
     image: mysql:5.7
     container_name: mysql
     environment:
@@ -84,11 +84,11 @@ services:
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: pma
     links:
-      - mysql
+      - db
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: db
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     restart: always
