@@ -81,6 +81,8 @@ services:
       - "6033:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    networks: 
+      - edge         
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -96,6 +98,8 @@ services:
       - 8001:80
     #volumes:
       #dbdata:
+    networks: 
+      - edge         
 
   portainer:
     image: portainer/portainer-ce:latest
