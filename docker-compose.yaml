@@ -28,7 +28,7 @@ services:
       context: ./nodered
       dockerfile: Dockerfile
     #image: nodered/node-red
-    container_name: nodered
+    container_name: node-red
     restart: always
     environment:
       - TZ=America/Sao_Paulo
