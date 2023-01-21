@@ -33,7 +33,11 @@ services:
     environment:
       - TZ=America/Sao_Paulo
     ports: 
-      - 1880:1880
+       - 1000-1002:1880"
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure   
     volumes:
       - noderedData:/data
     networks:
