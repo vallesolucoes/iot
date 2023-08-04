@@ -16,7 +16,7 @@ def main():
 
     # Widgets de comunicação serial na coluna 1
     with col1:
-        st.markdown("## Comunicação Serial")
+        st.header("Comunicação Serial")
         # Listar todas as portas seriais disponíveis
         serial_ports = [port.device for port in serial.tools.list_ports.comports()]
         # Criar um campo de seleção para as portas seriais
@@ -36,7 +36,7 @@ def main():
 
     # Formulário na coluna 2
     with col2:
-        st.markdown("## Formulário")
+        st.header("Formulário")
         # Campos de entrada de usuário
         name = st.text_input("Nome", "")
         email = st.text_input("Email", "")
@@ -50,20 +50,25 @@ def main():
             st.write("Idade:", age)
 
     # Elemento para exibir os dados recebidos pela serial em tempo real (terminal do linux)
-    st.markdown("## Dados Recebidos pela Serial")
+    st.header("Dados Recebidos pela Serial")
     data_display = st.empty()
 
     while True:
-        if reading and ser is not None:
-            try:
-                serial_data = ser.read().decode('utf-8')
-                data_buffer += serial_data
-                # Limitar o buffer de dados para evitar sobrecarga de memória
-                if len(data_buffer) > 10000:
-                    data_buffer = data_buffer[-10000:]
-                data_display.text(data_buffer)
-            except:
-                pass
+        if data_buffer:
+            data_display.text(data_buffer)
+            data_buffer = ""
+
+def read_serial_data():
+    global data_buffer
+    while reading and ser is not None:
+        try:
+            serial_data = ser.read().decode('utf-8')
+            data_buffer += serial_data
+            # Limitar o buffer de dados para evitar sobrecarga de memória
+            if len(data_buffer) > 10000:
+                data_buffer = data_buffer[-10000:]
+        except:
+            pass
 
 def start_serial_thread():
     global reading_thread, data_buffer
